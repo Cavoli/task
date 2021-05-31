@@ -6,12 +6,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Debt;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DebtController extends Controller
 {
 
     public function __construct()
     {
+        $this->middleware('auth');
     }
 
     public function index()
@@ -44,6 +46,36 @@ class DebtController extends Controller
             'layout' => 'show']);
     }
 
+    public function indebted()
+    {
+        $debts = DB::select('select * from debts where debts.debt > 0');
+        return view('debt', ['debts' => $debts, 'layout' => 'indebted']);
+    }
+
+    public function paid()
+    {
+        $debts = DB::select('select * from debts where debts.debt = 0');
+        return view('debt', ['debts' => $debts, 'layout' => 'paid']);
+    }
+
+    public function sortByStudent()
+    {
+        $debts = DB::select('select * from debts order by debts.lastName');
+        return view('debt', ['debts' => $debts, 'layout' => 'studentsort']);
+    }
+
+    public function sortByPayment()
+    {
+        $debts = DB::select('select * from debts order by debts.payment');
+        return view('debt', ['debts' => $debts, 'layout' => 'paymentsort']);
+    }
+
+    public function sortByHistory()
+    {
+        $debts = DB::select('select * from debts order by debts.updated_at');
+        return view('debt', ['debts' => $debts, 'layout' => 'historysort']);
+    }
+
     public function edit($id)
     {
         $debt = Debt::find($id);
@@ -55,23 +87,12 @@ class DebtController extends Controller
     public function update(Request $request, $id)
     {
         $debt = Debt::find($id);
-        $debt->firstName = $request->input('firstName');
-        $debt->lastName = $request->input('lastName');
-        $debt->debt = $debt->debt - $request->input('debt');
         $debt->payment = $request->input('payment');
+        $debt->debt = $debt->debt - $request->input('payment');
         $debt->save();
         return redirect('/debt');
     }
 
-//    public function update(Request $request, $id){
-//
-//        $studentDebt = DebtController::find($id);
-//        $studentDebt -> firstName = $request ->input('firstName');
-//        $studentDebt -> lastName = $request -> input('lastName');
-//        $studentDebt -> debt = $request -> input('debt');
-//        $studentDebt -> save();
-//        return redirect('/');
-//    }
 
     public function destroy($id)
     {

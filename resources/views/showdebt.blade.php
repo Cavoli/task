@@ -3,40 +3,31 @@
          alt="...">
     <div class="card-body">
         <h5 class="card-title">List of students</h5>
-        <p class="card-text">You can find here all the informations about student debts in the system</p>
+        <p class="card-text">You can find here all the information about student debts in the system</p>
 
         <table class="table">
             <thead class="thead-light">
             <tr>
-                <th scope="col"><a href={{url('debt/studentsort')}}>First Name</a></th>
-                <th scope="col">Last Name</th>
+                <th scope="col">First name</th>
+                <th scope="col">Second Name</th>
                 <th scope="col">Debt</th>
-                <th scope="col"><a href={{url('debt/paymentsort')}}>Last payment</a></th>
-                <th scope="col"><a href={{url('debt/historysort')}}>Last payment date</a></th>
 
             </tr>
             </thead>
             <tbody>
-            @foreach($debts as $debt)
                 <tr>
                     <td>{{ $debt->firstName }}</td>
                     <td>{{ $debt->lastName }}</td>
                     <td>{{ $debt->debt }}</td>
                     <td>{{ $debt->payment }}</td>
-                    <td>{{$debt -> updated_at}}</td>
                     <td>
 
                         <a href="{{ url('/debt/edit/'.$debt->id) }}" class="btn btn-sm btn-warning">Edit</a>
 
                     </td>
-                    <td>
 
-                        <a href="{{ url('/debt/delete/'.$debt->id) }}" class="btn btn-sm btn-warning">Delete</a>
-
-                    </td>
 
                 </tr>
-            @endforeach
             </tbody>
         </table>
     </div>

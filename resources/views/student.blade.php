@@ -79,7 +79,7 @@
     <div class="container-fluid mt-4">
         <div class="row">
             <section class="col">
-                @include("studentslist")
+                @include("showstudent")
             </section>
             <section class="col"></section>
         </div>
@@ -111,7 +111,7 @@
                                 <input value="{{ $student->age }}" name="age" type="text" class="form-control"  placeholder="Enter the Age">
                             </div>
                             <div class="form-group">
-                                <label>Speciality</label>
+                                <label>Group no</label>
                                 <input value="{{ $student->groupId }}" name="groupId" type="text" class="form-control"  placeholder="Enter Sepeciality">
                             </div>
                             <input type="submit" class="btn btn-info" value="Update">
@@ -124,6 +124,9 @@
             </section>
         </div>
     </div>
+
+
+
 @endif
 
 <footer></footer>

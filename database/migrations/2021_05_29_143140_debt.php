@@ -10,9 +10,9 @@ class Debt extends Migration
     {
         Schema::create('debts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('firstName') ;
-            $table->string('lastName') ;
-            $table->integer('debt') ;
+            $table->string('firstName');
+            $table->string('lastName');
+            $table->integer('debt')->$this->default(0);
             $table->integer('payment')->default(0);
             $table->timestamps();
         });

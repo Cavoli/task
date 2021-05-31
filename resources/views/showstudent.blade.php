@@ -11,12 +11,11 @@
                 <th scope="col">First name</th>
                 <th scope="col">Second Name</th>
                 <th scope="col">Age</th>
-                <th scope="col">Group no</th>
+                <th scope="col">Group Id</th>
 
             </tr>
             </thead>
             <tbody>
-            @foreach($students as $student)
                 <tr>
                     <td>{{ $student->firstName }}</td>
                     <td>{{ $student->lastName }}</td>
@@ -27,15 +26,9 @@
                         <a href="{{ url('/student/edit/'.$student->id) }}" class="btn btn-sm btn-warning">Edit</a>
 
                     </td>
-                    <td>
-
-                        <a href="{{ url('/student/delete/'.$student->id) }}" class="btn btn-sm btn-warning">Delete</a>
-
-                    </td>
 
 
                 </tr>
-            @endforeach
             </tbody>
         </table>
     </div>

@@ -12,6 +12,7 @@ class StudentController extends Controller
 
     public function __construct()
     {
+        $this->middleware('auth');
     }
 
     public function index()
@@ -56,17 +57,6 @@ class StudentController extends Controller
 
     }
 
-//    public function makePayment($id)
-//    {
-//        $student = Student::find($id);
-//        $students = Student::all();
-//        return view('student', ['students' => $students, 'student' => $student, 'layout' => 'edit']);
-//    }
-//
-//    public function updatePayment(Request $request, $id, $payment){
-//        $student = Student::find($id);
-//        $student->debt =
-//    }
 
     public function update(Request $request, $id)
     {

@@ -14,6 +14,7 @@ class Debt extends Model
         'firstName' => 'string|required',
         'lastName' => 'string|required',
         'debt' => 'integer|required',
+        'updated_at',
     );
 
 
